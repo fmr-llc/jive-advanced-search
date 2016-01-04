@@ -1,0 +1,154 @@
+<!-- 
+Jive - Search Widget Builder
+
+Copyright (c) 2015 Fidelity Investments
+Licensed under the Apache License, Version 2.0 (the "License");
+you may not use this file except in compliance with the License.
+You may obtain a copy of the License at
+
+    http://www.apache.org/licenses/LICENSE-2.0
+
+Unless required by applicable law or agreed to in writing, software
+distributed under the License is distributed on an "AS IS" BASIS,
+WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+See the License for the specific language governing permissions and
+limitations under the License.
+
+FILE DESCRIPTION
+This is the builder application that presents a front end to users and allows
+them to configure the places searched by the resulting search widget code.  The 
+user needs to complete the configuration and generate the widget code.  This code 
+is then pasted into an HTML Widget on an Overview page to create the search widget.
+
+WIDGET DESCRIPTION
+This Jive HTML widget which creates an alternate widget to the standard Jive 
+search. The standard search allows for a global search, or searching the current 
+container (Group, Space, etc.). This widget provides a more configurable search that
+allows multiple configurable containers to be searched. This widget will use the 
+underlying Jive search APIs for surfacing the search criteria.
+-->
+<meta name="fidosreg" content="b764a0a9536448345dc227af95e192521d337b5e4c3560c859b89ecd0407004a">
+
+<script src='/resources/scripts/jquery/jquery.js'></script>
+<script>
+
+var library_loader_content_id = "0";
+
+$j("head").append('<scr'+'ipt src="/api/core/v3/attachments/file/' + library_loader_content_id + '/data"></scr'+'ipt>');
+</script>
+<script>
+$j.include_library('bootstrap.min.css');
+$j.include_library('search_widget_builder.css');
+$j.include_library('bootstrap.min.js');
+$j.include_library('search_widget_builder.js');
+</script>
+
+<meta charset='UTF-8'>
+
+<div id='mainContainer' style='display:block; overflow: hidden;' >
+	<div id='searchTitle' class='page-header'> 
+		<h2>Build Search Widget</h2> 
+	</div>
+	<div id='searchUrlDiv' style='display:block;'>
+		<div>
+			<p class='basicText'> 
+				Where do you want to search? 
+				<button class = 'btn btn-mini btn-info' onclick="alert('Add a single Ribbit URL to be included within your search widget.  \n Example: https://ribbit.fmr.com/groups/ribbit-developers')" style='display:inline'>?</button>
+				<span id='getContainerStatus'>  
+				</span> 
+			</p> 
+		</div>
+		<div class='row'>
+			<span id='locations' class='span8'>
+				<div class='input-append'>
+					<input class='span7' id='inputUrlField' type='text'>
+					<Button id='addIdButton' class='btn btn-info btn-small' onclick="getContainerID(document.getElementById('inputUrlField').value)" disabled>Add</Button> </input>
+				</div>
+			</span>
+		</div>
+	</div>
+	<div id='childrenDiv' style='display:none' >
+		<div class='row'>
+			<h4 class='span5 offset1' >
+				Number of Subspaces and Projects Found:  
+				<div style='display:inline' id='childCountDiv'>0</div>
+			</h4>
+			<h5 class='span5 offset1' >
+				Would you like to add these subspaces and
+				<br>
+				projects to your search?
+			</h5>
+		</div>
+		<div id='yesNoChildrenButtons' class='row span2 offset2'>
+			<button class='btn btn-info btn-small' id='addChildrenButton' onclick='addChildrenToBox()'>Yes</button>
+			<button class='btn btn-info btn-small' id='dontAddChildrenButton' onclick='dontAddChildrenToBox()'>No</button>
+		</div>
+
+		<button id='firstCancelButton' class='btn btn-info btn-small' onclick='cancelToListBox()'>Cancel</button>
+		<button id='addAnotherUrlCancelButton' class='btn btn-info btn-small' style="display: none;" onclick='divCustomDesignBackButton()'>Cancel</button>
+	</div>
+	<div id='listBoxDiv' style='display: none;'>
+		<div id='addAnotherUrlDiv'>
+			<button class='btn btn-info btn-small' id='addAnotherUrlButton' onclick='addAnotherUrl()'>Add Another URL</button>
+			<button class = 'btn btn-mini btn-info' onclick="alert('Add another URL - Allows you to add more Ribbit locations to the search you are building')" style='display:inline'>?</button>
+		</div>
+		<div id='locTextArea'>
+			<br>
+			<select id='locationSelectArea' class='span8'  onChange='locationSelectAreaItemChange()' multiple> </select>
+		</div>
+		<div id='removeAndCountDiv' class='row'>
+			<Button class='btn btn-info btn-small span1' onclick="removeIdFromBox($j( '#locationSelectArea option:selected').val())" id='removeButton' disabled> Remove</Button>
+			<span id='numberPlacesSearch' class='span6 offset1' title='Cannot Exceed 100'>Number of Spaces, Subspaces, Groups, and Projects to Search:
+				<span id='count'>0</span> 
+			</span>
+		</div>
+		<div id='navigationButtons' class='row'>
+			<button class='btn btn-info btn-small' onclick='cancelToStart()'>Cancel</button>
+			<button class='btn btn-info btn-small' id='showStyleArea' onclick='showCustomDesignDiv()' style='text-align: center'>Next</button>
+		</div>
+	</div>
+	<div id ='addAnotherUrlBackButton' style='display:none; float:right;'>
+		<button class='btn btn-info btn-small' onclick='divCustomDesignBackButton()'>Back</button>	
+	</div>
+	<div id='customDesignDiv' style='display:none'>
+		<span id='boxStyle'>
+		<p class='basicText'> Choose Search Box Style:  </p>
+			<div id='searchBoxes' title='Design will automatically resize based upon the container it is located in'>
+				<input id='box1'  placeholder='Search' readonly> </input>
+				<input id='box2'  placeholder='Search' readonly> </input>
+				<input id='box3'  placeholder='Search' readonly> </input>
+			</div>
+		    <div class='pagination pagination-small' id='boxButtons'>
+				<ul id='nextPrev'>
+					<li><a href='' onclick='previousBox(); return false;'>Prev</a></li>
+					<li><a href='' onclick= 'nextBox(); return false;'>Next</a></li>
+				</ul>
+			</div>
+		</span>
+		<span id='numberOfResults'>
+			<p class='basicText'> Number of Results Displayed per Page: </p>
+			<div id='numbersSelect'>
+				<select class='span1' id='dropBoxNumberResults' onchange='changeNumberOfResults()'>
+					<option value ='5'> 5 </option>
+					<option value ='10'> 10 </option>
+					<option value ='15'> 15 </option>
+				</select>
+			</div>
+		</span>	
+		<div style='text-align: center;'>
+			<button class='btn btn-info btn-small' onclick='divCustomDesignBackButton()'>Back</button>
+			<Button id='genButton' class='btn btn-info btn-small' onclick='generateCode()'>Finish</Button>
+		</div>
+	</div>
+	<div id = 'generatedCodeDiv'>
+		<h4> Copy and paste this code into an HTML Widget: </h4>
+		<div id='generatedTextArea'>
+			<textarea class='span7' id='generatedCodeBox' readonly> Script Generator </textarea>
+			<p>Don't know what to do next? Check out the "Creating an HTML widget tutorial." </p>
+		</div>
+		<div id='generatorControls' style='text-align: center;'>
+			<button class='btn btn-info btn-small' onclick='showCustomDesignDiv()'>Back</button>
+			<Button class='btn btn-info btn-small' onclick='cancelToStart()'>Restart</Button>
+		</div>
+	</div>			
+</div>
