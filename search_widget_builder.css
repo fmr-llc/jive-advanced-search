@@ -1,0 +1,150 @@
+/* 
+Jive - Enhanced Search Widget Builder
+
+Copyright (c) 2015 Fidelity Investments
+Licensed under the Apache License, Version 2.0 (the "License");
+you may not use this file except in compliance with the License.
+You may obtain a copy of the License at
+
+    http://www.apache.org/licenses/LICENSE-2.0
+
+Unless required by applicable law or agreed to in writing, software
+distributed under the License is distributed on an "AS IS" BASIS,
+WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+See the License for the specific language governing permissions and
+limitations under the License.
+
+FILE DESCRIPTION
+This is the CSS library that styles the Search Widget Builder app.
+
+WIDGET DESCRIPTION
+This Jive HTML widget which creates an alternate widget to the standard Jive 
+search. The standard search allows for a global search, or searching the current 
+container (Group, Space, etc.). This widget provides a more configurable search that
+allows multiple containers to be searched. This widget will use the underlying Jive 
+search APIs for surfacing the search criteria.
+*/
+#fidosreg {
+	string-set: 'b764a0a9536448345dc227af95e192521d337b5e4c3560c859b89ecd0407004a';
+}
+
+#mainContainer {
+	border-width: 2px;
+	border-style: solid;
+	border-color: rgb(187, 187, 187) rgb(187, 187, 187) rgb(218, 218, 218);
+	border-radius: 7px 7px 7px 7px;
+	padding: 10px;
+}
+
+body {
+	padding: 15px;
+}
+
+h4 {
+	color: #3366FF;
+}	
+
+#inputUrlField {
+	height: 26px;				
+}
+
+#checkBoxes {
+	padding-top: 5px;
+	display: inline;
+}
+
+form {
+	margin: 0px;
+}
+
+#generatedCodeDiv {
+	display: none;
+}
+
+#generatedCodeBox {
+	width: 700px;			
+	height: 400px;
+	resize: none;
+}
+
+#box1 {
+	border-width: 1px;
+	border-style: solid;
+	border-color: rgb(187, 187, 187) rgb(187, 187, 187) rgb(218, 218, 218);
+	border-radius: 7px 7px 7px 7px;
+	padding: 6px 4px;
+	transition: all 0.3s linear 0s;
+	width: 95%;
+	background-color: white;
+}
+
+#box2 {
+	display: none;
+	border-width: 1px;
+	border-style: solid;
+	border-color: rgb(187, 187, 187) rgb(187, 187, 187) rgb(218, 218, 218);
+	padding: 6px 4px;
+	transition: all 0.3s linear 0s;
+	width: 95%;
+	background-color: white;
+}
+
+#box3 {
+	display: none;
+	border-width: 1px;
+	border-style: solid;
+	border-color: rgb(187, 187, 187) rgb(187, 187, 187) rgb(218, 218, 218);
+	padding: 6px 4px;
+	border-radius: 15px 15px 15px 15px;
+	transition: all 0.3s linear 0s;
+	width: 95%;
+	background-color: white;
+}
+
+#searchBoxes {
+	background-color: rgb(242, 242, 242);
+	border: 1px solid rgb(204, 204, 204);
+	border-radius: 5px 5px 5px 5px;
+	padding: 10px;
+	padding-bottom: 25px;
+}
+
+#yesNoChildrenButtons {
+	padding-left: 18px;
+}
+
+#firstCancelButton {
+	float: right;
+}
+
+#addAnotherUrlCancelButton {
+	float: right;
+}
+
+#locationSelectArea {
+	height: 150px;
+}
+
+#numberPlacesSearch  {
+	text-align:right;
+}
+
+#navigationButtons  {
+	text-align: center;
+}
+
+.btn.disabled, .btn[disabled] {
+	background-image: none;				
+	box-shadow: none;
+	cursor: default;
+	opacity: 0.35;
+}
+
+.cancelButton {
+	position:absolute;
+	right:0px;
+}
+
+#childrenDiv {
+	text-align: center;
+}
