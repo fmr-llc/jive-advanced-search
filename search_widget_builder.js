@@ -301,24 +301,24 @@ function generateCode() {
 	});
 	searchPlaces = searchPlaces.substring(0,searchPlaces.length - 2);
 	
-	$j('#generatedCodeBox').val( "<scr"+"ipt src='/resources/scripts/jquery/jquery.js'></scr"+"ipt>\n"
+	$j('#generatedCodeBox').val( "<scr"+"ipt src='/api/core/v3/attachments/file/" + jquery_content_id + "/data'></scr"+"ipt>\n"
 								 + "<scr"+"ipt src='/api/core/v3/attachments/file/" + library_loader_content_id + "/data'></scr"+"ipt>\n"
 								 + "<scr"+"ipt>\n"
-								 + "$j.include_library('search_widget.css');\n"
-								 + "$j.include_library('search_widget.js');\n"
+								 + "$j.load_library('search_widget.css');\n"
+								 + "$j.load_library('search_widget.js');\n"
 								 + "var searchPlaces = '" + searchPlaces +"'; \n"
 								 + "var searchCount = " + searchCount +"; \n"							
 								 + "var borderRadius = '" + currentBorderRadius + "'; \n"
 								 + "var additionalFilters = '';\n"
 								 + "$j(function() {\n"
-								 + "$j('#mainContentDiv').html(insertHTML);\n"
+								 + "$j('#SearchContainer').html(insertHTML);\n"
 								 + "});\n"
 								 + "$j(document).ready(function(){\n"
 								 + "initSafe();\n"
 								 + "$j('#jive-search-terms').css({'border-radius': borderRadius });\n"
 								 + "});\n"
 								 + "</scr"+"ipt>\n"
-								 + "<div id='mainContentDiv'></div>\n");
+								 + "<div id='SearchContainer'></div>\n");
 
 	showGeneratedCode();
 }//generateCode

@@ -29,23 +29,25 @@ underlying Jive search APIs for surfacing the search criteria.
 -->
 <meta name="fidosreg" content="b764a0a9536448345dc227af95e192521d337b5e4c3560c859b89ecd0407004a">
 
-<script src='/resources/scripts/jquery/jquery.js'></script>
+<script src='JQUERY'></script>
 <script>
 
+var jquery_content_id = "0";
 var library_loader_content_id = "0";
 
+var $j = jQuery.noConflict();
 $j("head").append('<scr'+'ipt src="/api/core/v3/attachments/file/' + library_loader_content_id + '/data"></scr'+'ipt>');
 </script>
 <script>
-$j.include_library('bootstrap.min.css');
-$j.include_library('search_widget_builder.css');
-$j.include_library('bootstrap.min.js');
-$j.include_library('search_widget_builder.js');
+$j.load_library('bootstrap.css');
+$j.load_library('search_widget_builder.css');
+$j.load_library('bootstrap.js');
+$j.load_library('search_widget_builder.js');
 </script>
 
 <meta charset='UTF-8'>
 
-<div id='mainContainer' style='display:block; overflow: hidden;' >
+<div id='SearchBuilderContainer' style='display:block; overflow: hidden;' >
 	<div id='searchTitle' class='page-header'> 
 		<h2>Build Search Widget</h2> 
 	</div>
