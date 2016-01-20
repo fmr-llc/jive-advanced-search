@@ -45,7 +45,14 @@ h4 {
 }	
 
 #inputUrlField {
-	height: 26px;				
+	height: 26px;
+	width: 60%;
+	border-width: 1px;
+	border-style: solid;
+	border-color: rgb(187, 187, 187) rgb(187, 187, 187) rgb(218, 218, 218);
+	border-radius: 4px 4px 4px 4px;
+	padding: 6px 4px;
+	transition: all 0.3s linear 0s;
 }
 
 #checkBoxes {
@@ -62,7 +69,7 @@ form {
 }
 
 #generatedCodeBox {
-	width: 700px;			
+	width: 700px;
 	height: 400px;
 	resize: none;
 }
@@ -134,7 +141,7 @@ form {
 }
 
 .btn.disabled, .btn[disabled] {
-	background-image: none;				
+	background-image: none;
 	box-shadow: none;
 	cursor: default;
 	opacity: 0.35;
