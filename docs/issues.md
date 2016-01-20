@@ -1,13 +1,6 @@
 ISSUES
 ======
 
-
-Invalid URL
------------
-
-If you are getting an "Invalid URL" message when you try to add a place to search, then the address you are pasting into the entry field is not being recognized as a valid container (group, project, or space) URL.  Go back to the location in your instance and copy the URL address and try again.
-
-
 Widget does not work properly
 -----------------------------
 
@@ -24,6 +17,18 @@ If your Jive installation has untrusted users (such as external customers), and 
 ```
 
 If this property is set to "true", then all script and style tags are removed from the HTML widgets on save.  You should be familiar with cross site scripting attacks, and evaluate the risk of enabling scripting on your site prior to setting this to "false".
+
+
+Expected content does not show up in Content Lookup
+---------------------------------------------------
+
+The Content Lookup widget operates by using Jive's V3 search API.  As such, it only returns content that is in its search index.  If your search servers are particularly slow when the content is first saved, it can take 30-60 seconds for the content to be indexed by your search service and show up in the results.  Also, Jive's search is more finnicky than a Google search.  It does not take into account "like" terms, and will only return searches for terms matching what you enter, so double-check the input terms.
+
+
+Developer Console Shows Error Unexpected Character
+--------------------------------------------------
+
+You have likely mistyped something while following the directions.  Another common cause is using Microsoft Word as a text editor.  Never use Word as it uses its own version of the begin and end quotes, which are not valid HTML or JavaScript characters.  Instead of using Word, use a simple editor like Notepad.
 
 
 Widget does not resize
