@@ -200,7 +200,7 @@ function runSearch	(startIndex) {
 	searchResultTotal = '';
 	
 	//get the search term from the input box
-	var query_val = document.getElementById(inputBoxSearch).value;
+	var query_val = encodeURIComponent(document.getElementById(inputBoxSearch).value);
 
 	// Go through all configured places and determine which ones the user has access to
 	var authorizedPlaces = '';
